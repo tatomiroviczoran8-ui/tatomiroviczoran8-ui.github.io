@@ -268,18 +268,115 @@ Ako selo ima priču — ima i budućnost.
 </section>
 <h2>Galerija</h2>
 
-<div style="
-display:grid;
-grid-template-columns: repeat(2, 1fr);
-gap:15px;
-margin-top:20px;
-">
+<!-- COVER SLIKA -->
+<div class="gallery-cover" onclick="openGallery(2)">
+  <img src="20210128_141209.jpg" alt="Galerija Trešnjar">
+  <div class="gallery-label">📁 Pogledaj galeriju (5 fotografija)</div>
+</div>
 
-<img src="20200501_065718.jpg" style="width:100%; border-radius:12px;">
-<img src="20210206_180035.jpg" style="width:100%; border-radius:12px;">
-<img src="20210128_141209.jpg" style="width:100%; border-radius:12px;">
-<img src="20200501_053420.jpg" style="width:100%; border-radius:12px;">
-<img src="20200501_053410.jpg" style="width:100%; border-radius:12px;">
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <span class="close" onclick="closeGallery()">×</span>
+  <img id="lightbox-img">
+  <span class="prev" onclick="changeSlide(-1)">❮</span>
+  <span class="next" onclick="changeSlide(1)">❯</span>
+</div>
+
+<!-- STILOVI -->
+<style>
+.gallery-cover {
+  position: relative;
+  max-width: 600px;
+  margin: 25px auto;
+  cursor: pointer;
+}
+
+.gallery-cover img {
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+}
+
+.gallery-label {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  background: rgba(0,0,0,0.65);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: sans-serif;
+}
+
+/* LIGHTBOX */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+#lightbox img {
+  max-width: 92%;
+  max-height: 92%;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 36px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  font-size: 42px;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  user-select: none;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+</style>
+
+<!-- JAVASCRIPT -->
+<script>
+const images = [
+  "20200501_065718.jpg",
+  "20210206_180035.jpg",
+  "20210128_141209.jpg", // COVER
+  "20200501_053420.jpg",
+  "20200501_053410.jpg"
+];
+
+let currentIndex = 0;
+
+function openGallery(index) {
+  currentIndex = index;
+  document.getElementById("lightbox").style.display = "flex";
+  document.getElementById("lightbox-img").src = images[currentIndex];
+}
+
+function closeGallery() {
+  document.getElementById("lightbox").style.display = "none";
+}
+
+function changeSlide(step) {
+  currentIndex += step;
+  if (currentIndex < 0) currentIndex = images.length - 1;
+  if (currentIndex >= images.length) currentIndex = 0;
+  document.getElementById("lightbox-img").src = images[currentIndex];
+}
+</script>
 
 </div>
  <section style="
