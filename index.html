@@ -68,12 +68,57 @@ font-weight: 600;
 .tresnjar-monografija ol {
   padding-left: 24px;
 }
+.menu-btn {
+position: fixed;
+top: 20px;
+right: 20px;
+background: rgba(0,0,0,0.6);
+color: white;
+border: none;
+padding: 10px 14px;
+font-size: 20px;
+border-radius: 8px;
+cursor: pointer;
+z-index: 9999;
+}
+
+.dropdown-menu {
+display: none;
+position: fixed;
+top: 60px;
+right: 20px;
+background: rgba(0,0,0,0.9);
+border-radius: 10px;
+overflow: hidden;
+z-index: 9999;
+}
+
+.dropdown-menu a {
+display: block;
+padding: 12px 20px;
+color: white;
+text-decoration: none;
+font-size: 16px;
+border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.dropdown-menu a:hover {
+background: rgba(255,255,255,0.1);
+}    
 </style>
 <title>Trešnjar kod Žiče (Kraljevo) – Istorija, priroda i digitalni vodič</title>
 
 <meta name="description" content="Trešnjar kod Žiče u blizini Kraljeva – istorija sela, rudnici magnezita, industrijsko nasleđe, priroda planine Stolovi i značajna mesta u okolini.">
 </head>
 <body>
+</head>
+<body>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<div id="dropdownMenu" class="dropdown-menu">
+<a href="index.html">Trešnjar</a>
+<a href="planina-stolovi-kraljevo.html">Planina Stolovi</a>
+</div>
 <audio id="bg-music" loop>
   <source src="Za_sajt_pesma.m4a" type="audio/mp4">
 </audio>
@@ -463,6 +508,17 @@ function changeSlide(step) {
   <p style="margin-bottom:0;">
     © 2026 Zoran Tatomirović. Sva prava zadržana.
   </p>
- </section>   
+ </section>
+    <script>
+function toggleMenu() {
+  var menu = document.getElementById("dropdownMenu");
+
+  if (menu.style.display === "block") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "block";
+  }
+}
+    </script>
 </body>
 </html>
